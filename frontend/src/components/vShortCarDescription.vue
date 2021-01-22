@@ -1,5 +1,5 @@
 <template>
-    <router-link class="linkedCard" :to="{name: 'vCarDescription'}">
+    <router-link class="linkedCard" :to="{name: 'vCarDescription', params: {id: car.id}}">
         <div class="row no-gutters"> <!--Объявление-->
             <div class="col-4">
                 <vPicturesCarousel/>
@@ -12,18 +12,20 @@
                             <div class="col-8 ">
                                 <div class="row no-gutters">
                                     <div class="col-12">
-                                        <h4>{{car.name}}</h4>
+                                        <strong>{{car.name}}</strong>
                                     </div>
                                 </div>
                                 <div class="row no-gutters carDescription">
-                                    <div class="col-8">
-                                        <div class="row no-gutters">{{car.volume}} л. / {{car.power}} л.с. / {{car.fuel}}</div>
-                                        <div class="row no-gutters">{{car.transmission}}</div>
-                                        <div class="row no-gutters">{{car.bodyStyle}}</div>
+                                    <div class="col-8 pt-1">
+                                        <div class="row no-gutters">{{car.combination.modification.engine.volume}} л. /
+                                             {{car.combination.modification.engine.power}} л.с. / 
+                                             {{car.combination.modification.engine.engineType.name}}</div>
+                                        <div class="row no-gutters">{{car.combination.modification.transmission.name}}</div>
+                                        <div class="row no-gutters">{{car.combination.bodyType.name}}</div>
                                     </div>
                                     <div class="col-4">
-                                        <div class="row no-gutters">{{car.drivetrain}}</div>
-                                        <div class="row no-gutters">{{car.color}}</div>
+                                        <div class="row no-gutters">{{car.combination.modification.drivetrain.name}}</div>
+                                        <div class="row no-gutters">{{car.color.name}}</div>
                                     </div>
                                 </div>
                             </div>

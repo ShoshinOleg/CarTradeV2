@@ -92,7 +92,7 @@ export default {
     }
 
     .customCarousel__button:hover:after {
-    background-color: red; /* TODO: brand color */
+    background-color: rgb(97, 143, 97); /* TODO: brand color */
     }
 
 </style>

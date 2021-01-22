@@ -5,6 +5,8 @@ import vHome from "../views/vHome"
 import vCarCatalog from "../views/vCarCatalog"
 import vCarDescription from "../views/vCarDescription"
 import vProfile from "../views/vProfile"
+import vCarSell from "../views/vCarSell"
+
 
 Vue.use(VueRouter)
 
@@ -20,7 +22,7 @@ const routes = [
         component: vCarCatalog
     },
     {
-        path: '/car-description',
+        path: '/car-description/:id',
         name: 'vCarDescription',
         component: vCarDescription
     },
@@ -28,8 +30,15 @@ const routes = [
         path: '/profile',
         name: 'vProfile',
         component: vProfile
-    }   
+    },
+    {
+        path: '/car-sell',
+        name: 'vCarSell',
+        component: vCarSell
+    }  
 ]
+
+
 
 const router = new VueRouter({
     mode: 'history',
