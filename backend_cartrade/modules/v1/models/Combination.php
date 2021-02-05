@@ -106,4 +106,13 @@ class Combination extends \app\modules\v1\models\BaseModel
             'modification' => $this->modification,
         ];
     }
+
+    public function getModifications($generationId, $bodyTypeId) {
+        $modifications = Modification::find()
+            ->joinWith('combinations')
+            ->where(['generationId' => $generationId])
+            ->andWhere(['bodyTypeId' => $bodyTypeId])
+            ->all();
+        return $modifications;
+    }
 }

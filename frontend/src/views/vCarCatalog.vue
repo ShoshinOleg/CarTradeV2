@@ -39,7 +39,9 @@ export default {
     },
     created() {
         this.$http.get('car')
-            .then((response) => this.cars = response.data)
+            .then((response) => {
+                this.cars = response.data;
+            });
     }
 }
 </script>

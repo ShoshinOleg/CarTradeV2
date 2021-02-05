@@ -5,7 +5,7 @@
             no-body
         >
             <b-card-body class="px-0">
-                <vPicturesCarousel/>
+                <vCarPicturesCarousel v-if="this.car.id" :carId="this.car.id"/>
                 <b-card-title class="pt-2">{{car.name}}, {{car.year}}</b-card-title>
                 <b-card-text>{{car.price}} ₽</b-card-text>
             </b-card-body>
@@ -14,12 +14,12 @@
 </template>
 
 <script>
-import vPicturesCarousel from "./vPicturesCarousel"
+import vCarPicturesCarousel from "./vCarPicturesCarousel"
 
 export default {
     name: "vCard",
     components: {
-        vPicturesCarousel
+        vCarPicturesCarousel
     },
     props: ['car']
 }

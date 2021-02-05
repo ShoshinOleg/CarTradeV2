@@ -8,14 +8,14 @@
             <b-carousel-slide>
                 <template slot="img">
                     <b-row>
-                        <vCard v-for="car in cars" :key="car.id" :car="car"/>
+                        <vCarCard v-for="car in cars" :key="car.id" :car="car"/>
                     </b-row>
                 </template>
             </b-carousel-slide>
             <b-carousel-slide>
                 <template slot="img">
                     <b-row>
-                        <vCard v-for="car in cars" :key="car.id" :car="car"/>
+                        <vCarCard v-for="car in cars" :key="car.id" :car="car"/>
                     </b-row>
                 </template>
             </b-carousel-slide>
@@ -24,12 +24,12 @@
 </template>
 
 <script>
-import vCard from "./vCard"
+import vCarCard from "./vCarCard"
 
 export default {
     name: "vCarsCarousel",
     components: {
-        vCard
+        vCarCard
     },
     props: [
         'cars'

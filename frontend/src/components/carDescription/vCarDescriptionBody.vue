@@ -12,16 +12,20 @@
                 <a href="#">Характеристики модели в каталоге</a>
             </div> <!--/Левая часть тела объявления-->
             <div class="col-8"> <!--Правая часть тела объявления-->
-                <vPicturesCarousel/>
+                <vCarPicturesCarousel v-if="this.car.id" :carId="this.car.id"/>
+                <!--<vPicturesCarousel v-if="carImagesPaths.length > 0" :photos="this.carImagesPaths"/>-->
                 <vCarComment/>
                 <vCarComplectation/>
+                <!--<img v-for="(path, index) in carImagesPaths" :key="index"
+                    :src="path"> -->
+                    
             </div>
         </div> <!--/Тело объявления-->
     </div>
 </template>
 
 <script>
-import vPicturesCarousel from "../vPicturesCarousel"
+import vCarPicturesCarousel from "../vCarPicturesCarousel"
 import vCarPropertiesList from "./vCarPropertiesList"
 import vCarDescriptionTopBar from "./vCarDescriptionTopBar"
 import vCarOwnerDescription from "./vCarOwnerDescription"
@@ -31,14 +35,44 @@ import vCarComment from "./vCarComment"
 export default {
     name: "vCarDescriptionBody",
     components: {
-        vPicturesCarousel,
+        vCarPicturesCarousel,
         vCarPropertiesList,
         vCarDescriptionTopBar,
         vCarOwnerDescription,
         vCarComplectation,
         vCarComment,
     },
-    props: ['car'],
+    props: {
+        car: {},
+    },
+    
+    /*data() {
+        return {
+            carImagesDesc: [],
+            carImagesPaths: [],
+            path: "http://localhost:1199/v1/images?id=1",
+            image: undefined
+        }
+    },
+    updated() {
+        if(this.car.id && this.carImagesDesc.length == 0) {
+            console.log('updated car.id', this.car.id);
+            this.$http.get('images/get-list-images-by-ad', {params: {adId: this.car.id}})
+                .then((response) => {
+                    this.carImagesDesc = response.data;
+                    console.log(this.carImagesDesc);
+                    this.carImagesPaths = [];
+                    this.carImagesDesc.forEach(element => {
+                        this.carImagesPaths.push("http://localhost:1199/v1/images?id=" + element.id);
+                    });
+                    console.log(this.carImagesPaths);
+
+                }
+                );
+        }
+        
+    }
+    */
 }
 </script>
 

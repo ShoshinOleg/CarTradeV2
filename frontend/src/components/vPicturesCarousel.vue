@@ -17,14 +17,22 @@ export default {
     name: 'vPicturesCarousel',
     data() {
     return {
-      photos: [
+      /*photos: [
         require('../assets/img/imgCars/SkodaRapid/SkodaRapid1.webp'),
         require('../assets/img/imgCars/SkodaRapid/SkodaRapid2.webp'),
         require('../assets/img/imgCars/SkodaRapid/SkodaRapid3.webp')
-      ],
+      ],*/
       forceCoverPhoto: null,
       placeholderUrl: "//placehold.it/380x285"
     };
+  },
+  props: {
+    photos: {
+      type: Array,
+      default() {
+        return [];
+      }
+    }
   },
   computed: {
     coverSrc() {

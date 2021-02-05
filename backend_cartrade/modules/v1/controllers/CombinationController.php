@@ -18,4 +18,14 @@ class CombinationController extends ApiController
 
         return $model;
     }
+
+    public function actionByGenerationBodyModification($generationId, $bodyTypeId, $modificationId)
+    {
+        return 
+                Combination::findOne([
+                    'generationId' => $generationId,
+                    'bodyTypeId' => $bodyTypeId,
+                    'modificationId' => $modificationId
+                ]);
+    }
 }

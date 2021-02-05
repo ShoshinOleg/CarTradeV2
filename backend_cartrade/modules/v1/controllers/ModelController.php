@@ -5,6 +5,7 @@ use app\modules\v1\models\Model;
 use app\modules\v1\models\Generation;
 use app\modules\v1\models\Combination;
 use app\modules\v1\models\BodyType;
+use app\modules\v1\models\Company;
 
 use Yii;
  
@@ -23,7 +24,7 @@ class ModelController extends ApiController
         return $model;
     }
 
-    public function actionYears($id) {
+    public function actionGetManufacturingYears($id) {
         $generations = Model::findOne($id)->getGenerations()->all();
         $years = [];
         foreach ($generations as $generation) {
@@ -41,23 +42,8 @@ class ModelController extends ApiController
         return $years;
     }
 
-    //Подумать, могу ли я это сделать проще(С помощью ActiveRecord и groupBy)
-    public function actionBody($modelId, $year) {
-        $generations = Model::findOne($modelId)->getGenerations()
-            ->where(['<=', 'startManufacturing', $year])
-            ->andWhere(['>=', 'endManufacturing', $year])
-            ->all();
-        $bodyTypes = [];
-        foreach ($generations as $generation) {
-            //$combinations = $generation->getCombinations();
-            $combinations = Combination::findAll(['generationId' => $generation->id]);
-            foreach ($combinations as $combination) {
-                if(!in_array($combination->bodyTypeId, $bodyTypes)) {
-                    $bodyTypes[] = $combination->bodyTypeId;
-                }
-            }
-        }
-        return BodyType::findAll($bodyTypes);
+    public function actionByCompany($id) {
+        return Company::findOne($id)->models;
     }
 
     

@@ -10,9 +10,9 @@
                 </div>
             </div>
             <h2>Избранное</h2>
-            <vCarsCarousel :cars="cars"/>
+            <vCarCardsCarousel :cars="cars"/>
             <h2>Просмотренные</h2>
-            <vCarsCarousel :cars="cars"/>
+            <vCarCardsCarousel :cars="cars"/>
         </div>
         <vFooter/>
     </div>
@@ -21,7 +21,7 @@
 <script>
     import vHeader from "../components/vHeader"
     import vCarSearchBlock from "../components/vCarSearchBlock"
-    import vCarsCarousel from "../components/vCarsCarousel"
+    import vCarCardsCarousel from "../components/vCarCardsCarousel"
     import vFooter from "../components/vFooter"
 
     export default {
@@ -29,17 +29,18 @@
         components: {
             vHeader,
             vCarSearchBlock,
-            vCarsCarousel,
+            vCarCardsCarousel,
             vFooter
         },
         data() {
             return {
-                cars: []
+                cars: [],
+                img: null
             }
         },
         created() {
             this.$http.get('car/index')
-                .then((response) => this.cars = response.data)
+                .then((response) => this.cars = response.data);
         }
     }
 </script>

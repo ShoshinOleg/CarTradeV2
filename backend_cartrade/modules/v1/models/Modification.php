@@ -117,4 +117,23 @@ class Modification extends \app\modules\v1\models\BaseModel
             'endManufacturing' => $this->endManufacturing,
         ];
     }
+
+    public static function getModifications($generationId, $bodyTypeId, $year, $engineTypeId = null, $drivetrainId = null ) {
+        $modifications = Modification::find()
+            ->where(['<=', 'startManufacturing', $year])
+            ->andWhere(['>=', 'endManufacturing', $year])
+            ->joinWith('combinations')
+            ->andWhere(['generationId' => $generationId])
+            ->andWhere(['bodyTypeId' => $bodyTypeId]);
+        if(isset($engineTypeId)) {
+            $modifications
+                ->joinWith('engine')
+                ->andWhere(['engineTypeId' => $engineTypeId]);
+        }
+        if(isset($drivetrainId)) {
+            $modifications
+                ->andWhere(['drivetrainId' => $drivetrainId]);
+        }
+        return $modifications;
+    }    
 }

@@ -2,6 +2,9 @@
 
 namespace app\modules\v1\controllers;
 use app\modules\v1\models\Generation;
+use app\modules\v1\models\Model;
+use app\modules\v1\models\Combination;
+use app\modules\v1\models\BodyType;
 use Yii;
  
 class GenerationController extends ApiController
@@ -19,22 +22,15 @@ class GenerationController extends ApiController
         return $model;
     }
 
-    public function actionModelYearBodyType($modelId, $year, $bodyTypeId ) {
-        /*
+    public function actionByModelYearBody($modelId, $year, $bodyTypeId ) {
         $generations = Model::findOne($modelId)->getGenerations()
             ->where(['<=', 'startManufacturing', $year])
             ->andWhere(['>=', 'endManufacturing', $year])
+            ->joinWith('combinations')
+            ->andWhere(['bodyTypeId' => $bodyTypeId])
             ->all();
-        $bodyTypes = [];
-        foreach ($generations as $generation) {
-            $combinations = Combination::findAll(['generationId' => $generation->id]);
-            foreach ($combinations as $combination) {
-                if(!in_array($combination->bodyTypeId, $bodyTypes)) {
-                    $bodyTypes[] = $combination->bodyTypeId;
-                }
-            }
-        }
-        return BodyType::findAll($bodyTypes);
-        */
+        return $generations;
     }
+
+
 }

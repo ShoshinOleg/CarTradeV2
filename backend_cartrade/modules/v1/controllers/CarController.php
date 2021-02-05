@@ -24,4 +24,8 @@ class CarController extends ApiController
             ->one();
         return $ad;
     }
+
+    public function actionImagesNames() {
+        
+    }
 }

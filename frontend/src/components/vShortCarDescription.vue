@@ -2,7 +2,7 @@
     <router-link class="linkedCard" :to="{name: 'vCarDescription', params: {id: car.id}}">
         <div class="row no-gutters"> <!--Объявление-->
             <div class="col-4">
-                <vPicturesCarousel/>
+                <vCarPicturesCarousel v-if="this.car.id" :carId="this.car.id"/>
             </div>
             
             <div class="col-8 pl-1"> <!--Правая часть элемента-->
@@ -59,13 +59,15 @@
 </template>
 
 <script>
-import vPicturesCarousel from "./vPicturesCarousel"
+import vCarPicturesCarousel from "./vCarPicturesCarousel"
 
 export default {
     name: 'vShortCarDescription',
     components: {
-        vPicturesCarousel
+        vCarPicturesCarousel
     },
-    props: ['car'],
+    props: {
+        car: {},
+    },
 }
 </script>
